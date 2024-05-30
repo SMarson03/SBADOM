@@ -1,0 +1,14 @@
+body{
+    --main-bg: #02061c;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100vh;
+    color: aliceblue;  
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
