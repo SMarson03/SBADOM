@@ -32,7 +32,7 @@ imagEl.setAttribute("src" , 'https://i.pinimg.com/736x/41/d8/37/41d8375f3237702f
 mainEl.appendChild(imagEl)
 imagEl.style.height = '400px'
 
-window.alert("Type in your birthday below to get your zodiac sign!");
+window.alert("Click the card for your fortune and type in your birthday below to get your zodiac sign!");
 
 //Pulled the url from the array and created an image element
 //allowing each url pulled to show a face value on the site
@@ -117,7 +117,7 @@ function findZodiacSign() {
   }
 
   const form = document.getElementById("form")
-//Saul assisted me with this. Definitely need more practice.
+//I have a feeling this made my card function work differently.
   form.addEventListener("submit",(e) =>{
   e.preventDefault()
   findZodiacSign()
