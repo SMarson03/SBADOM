@@ -1,5 +1,5 @@
 const bodyEl = document.querySelector('body');
-bodyEl.style.backgroundColor = "var(--main-bg)";
+
 bodyEl.style.backgroundImage = "url('https://images.pexels.com/photos/816608/pexels-photo-816608.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
 
 const mainEl =document.querySelector('main')
@@ -26,31 +26,6 @@ const cards = [
     {name:"DeathD", URL:"https://biddytarot.com/wp-content/uploads/2018/02/13-death.png"},
 ]
 
-const imagEl = document.createElement('img')
-imagEl.setAttribute("src" , 'https://i.pinimg.com/736x/41/d8/37/41d8375f3237702fed8b274ae68306ab.jpg');
-mainEl.appendChild(imagEl)
-imagEl.style.height = '400px'
-
-function createImg(url){
-   const img = document.createElement("img")
-   img.src = url
-   return img
-    
-
-}
-
-imagEl.addEventListener("click", (event)=>{
-    const backCard = shuffle(cards)[cards.length-1]
-    const {name, URL} = backCard
-    const img = createImg(URL)
-    mainEl.appendChild(img)
-    img.style.height = '400px'
-    console.log(img)
-}
-)
-
-
-
 function shuffle(cards){
     for(let i = 0; i < cards.length; i++){
         const j = Math.floor(Math.random()*(i +1));
@@ -58,5 +33,33 @@ function shuffle(cards){
     }
     return cards
 }
+//Created image element and set attribute to face down card as main focus
+const imagEl = document.createElement('img')
+imagEl.setAttribute("src" , 'https://i.pinimg.com/736x/41/d8/37/41d8375f3237702fed8b274ae68306ab.jpg');
+mainEl.appendChild(imagEl)
+imagEl.style.height = '400px'
+ 
+//Pulled the url from the array and created an image element
+//allowing each url pulled to show a face value on the site
+function createImg(url){
+   const img = document.createElement("img")
+   img.src = url
+   return img
+}
 
-//console.log(shuffle(cards[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]))
+//Adding event listener to face down card that every time its clicked
+//you "fortune" is read by a new card. My main issue allowing and append once
+imagEl.addEventListener("click", (event)=>{
+    
+    const backCard = shuffle(cards)[cards.length-1]
+    const {name, URL} = backCard
+    const img = createImg(URL)
+    mainEl.appendChild(img)
+    img.style.height = '400px'
+  
+}, {once: true}, //I DID IT!! Ok so now I"m figuring out how to rest position and a form validation
+)
+
+//bring it back to neutral
+
+
