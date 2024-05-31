@@ -32,13 +32,7 @@ imagEl.setAttribute("src" , 'https://i.pinimg.com/736x/41/d8/37/41d8375f3237702f
 mainEl.appendChild(imagEl)
 imagEl.style.height = '400px'
 
-const pEl = document.createElement ('p')
-mainEl.appendChild(pEl)
-function createText(text){
-    const p = document.createElement("p")
-    p.src = text
-    return text
-}
+
  
 //Pulled the url from the array and created an image element
 //allowing each url pulled to show a face value on the site
@@ -51,24 +45,77 @@ function createImg(url){
 //Adding event listener to face down card that every time its clicked
 //you "fortune" is read by a new card. My main issue allowing and append once
 imagEl.addEventListener("click", (event)=>{
-    mainEl.replaceChildren(mainEl.fourthChild)
+    mainEl.removeChild(mainEl.children[2]) //I initially
     const backCard = shuffle(cards)[cards.length-1]
-    const {name, URL, text} = backCard
+    const {name, URL} = backCard
     const img = createImg(URL)
-    const p = createText(text)
-    mainEl.appendChild(img, p)
+       mainEl.appendChild(img)
     img.style.height = '400px'
-        console.log(img, text)
+        console.log(img)
     
   
 }) 
 
-//bring it back to neutral
+function findZodiacSign() {
+    
+    let month = parseInt(document.getElementById("month").value);
+    let day = parseInt(document.getElementById("day").value);
 
-// function validate(){
-// let num = document.myform.num.value;
-// if(isNaN(num)){
-//     document.getElementById("numloc")
-// }
+    let zodiacSign = "";
 
-// }
+
+
+    if ((month == 1 && day >= 20) || (month == 2 && day <= 18)) {
+      zodiacSign = "Aquarius";
+
+    } else if ((month == 2 && day >= 19) || (month == 3 && day <= 20)) {
+      zodiacSign = "Pisces";
+
+    } else if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) {
+      zodiacSign = "Aries";
+
+    } else if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) {
+      zodiacSign = "Taurus";
+
+    } else if ((month == 5 && day >= 21) || (month == 6 && day <= 20)) {
+      zodiacSign = "Gemini";
+
+    } else if ((month == 6 && day >= 21) || (month == 7 && day <= 22)) {
+      zodiacSign = "Cancer";
+
+    } else if ((month == 7 && day >= 23) || (month == 8 && day <= 22)) {
+      zodiacSign = "Leo";
+
+    } else if ((month == 8 && day >= 23) || (month == 9 && day <= 22)) {
+      zodiacSign = "Virgo";
+
+    } else if ((month == 9 && day >= 23) || (month == 10 && day <= 22)) {
+      zodiacSign = "Libra";
+
+    } else if ((month == 10 && day >= 23) || (month == 11 && day <= 21)) {
+      zodiacSign = "Scorpio";
+
+    } else if ((month == 11 && day >= 22) || (month == 12 && day <= 21)) {
+      zodiacSign = "Sagittarius";
+
+    } else {
+      zodiacSign = "Capricorn";
+
+    }
+
+
+    let result =  document.getElementById("result")
+ result.innerHTML = "Your Zodiac Sign is: " + zodiacSign;
+ console.log(result)
+
+
+    
+
+  }
+
+  const form = document.getElementById("form")
+
+  form.addEventListener("submit",(e) =>{
+e.defaultPrevented()
+findZodiacSign()
+  })

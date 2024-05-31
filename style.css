@@ -19,9 +19,15 @@ main {
     
   }
  
-  p{
+  /* p{
     font-family: "Smythe", system-ui;
     font-weight: 400;
     font-style: normal;
     font-size: 10pt;
+  } */
+
+  form{
+   display: flex;
+   justify-content: baseline;
+   align-items: center; 
   }
