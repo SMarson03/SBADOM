@@ -10,13 +10,13 @@ h1.style.position = 'absolute'
 h1.style.top = '0'
 
 const cards = [
-    {name:"The Sun", URL:"https://biddytarot.com/wp-content/uploads/2018/02/19-sun-345x480.png", text: "The Sun represents success, radiance and abundance. The Sun gives you strength and tells you that no matter where you go or what you do, your positive and radiant energy will follow you and bring you happiness and joy. People are drawn to you because you can always see the bright side and bring such warmth into other people’s lives."},
+    {name:"The Sun", URL:"https://biddytarot.com/wp-content/uploads/2018/02/19-sun-345x480.png", text:""},
     {name:"Ace of Cups", URL:"https://biddytarot.com/wp-content/uploads/2013/12/cups-01-ace-345x480.png", text:""},
     {name:"The Fool", URL:"https://biddytarot.com/wp-content/uploads/2018/02/0-fool-345x480.png", text:""},
     {name:"The Lovers", URL:"https://biddytarot.com/wp-content/uploads/2018/02/06-lovers-345x480.png", text:""},
     {name:"The World", URL:"https://biddytarot.com/wp-content/uploads/2018/02/21-world-345x480.png", text:""},
-    {name:"The Tower", URL:"https://biddytarot.com/wp-content/uploads/2018/02/16-tower-345x480.png", text:"Just when you think you’re safe and comfortable, a Tower moment hits and throws you for a loop. A lightning bolt of clarity and insight cuts through the lies and illusions you have been telling yourself, and now the truth comes to light. "},
-    {name:"Death", URL:"https://biddytarot.com/wp-content/uploads/2018/02/13-death-345x480.png", text:"After a period of pause and reflection with The Hanged Man, the Death card symbolizes the end of a major phase or aspect of your life that you realize is no longer serving you, opening up the possibility of something far more valuable and essential. "},
+    {name:"The Tower", URL:"https://biddytarot.com/wp-content/uploads/2018/02/16-tower-345x480.png",text:""},
+    {name:"Death", URL:"https://biddytarot.com/wp-content/uploads/2018/02/13-death-345x480.png", text:""},
 ]
 
 function shuffle(cards){
@@ -32,8 +32,8 @@ imagEl.setAttribute("src" , 'https://i.pinimg.com/736x/41/d8/37/41d8375f3237702f
 mainEl.appendChild(imagEl)
 imagEl.style.height = '400px'
 
+window.alert("Type in your birthday below to get your zodiac sign!");
 
- 
 //Pulled the url from the array and created an image element
 //allowing each url pulled to show a face value on the site
 function createImg(url){
@@ -45,17 +45,20 @@ function createImg(url){
 //Adding event listener to face down card that every time its clicked
 //you "fortune" is read by a new card. My main issue allowing and append once
 imagEl.addEventListener("click", (event)=>{
-    mainEl.removeChild(mainEl.children[2]) //I initially
+    mainEl.removeChild(mainEl.children[1]) 
     const backCard = shuffle(cards)[cards.length-1]
-    const {name, URL} = backCard
+    const {name, URL, text} = backCard
     const img = createImg(URL)
-       mainEl.appendChild(img)
+    mainEl.appendChild(img)
     img.style.height = '400px'
         console.log(img)
     
   
 }) 
-
+//I could have made an array however I decided to go with an if/else statement itlt  was easier. 
+//I couldn't figure out why it wasn't printing results. It kept restarting the page Saul
+//suggested prevent default listener however for 15 minutes I realized I wrote prevent default wrong
+//I felt like i stumbled through this but here we are.
 function findZodiacSign() {
     
     let month = parseInt(document.getElementById("month").value);
@@ -114,8 +117,9 @@ function findZodiacSign() {
   }
 
   const form = document.getElementById("form")
-
+//Saul assisted me with this. Definitely need more practice.
   form.addEventListener("submit",(e) =>{
-e.defaultPrevented()
-findZodiacSign()
+  e.preventDefault()
+  findZodiacSign()
+  form.reset()
   })
